@@ -244,6 +244,12 @@ const _compileSass = async () => {
     .pipe(__wrapStyles())
     .pipe(dest('dist/css'));
 
+  src(['src/scss/selectize.groups.scss', ...plugin_styles])
+    .pipe(concat('selectize.groups.css'))
+    .pipe(sass({ includePaths: ['lib', 'src/scss'], }).on('error', sass.logError))
+    .pipe(__wrapStyles())
+    .pipe(dest('dist/css'));
+
   src(['src/scss/selectize.default.scss', ...plugin_styles])
     .pipe(concat('selectize.default.css'))
     .pipe(sass({ includePaths: ['lib', 'src/scss'], }).on('error', sass.logError))
